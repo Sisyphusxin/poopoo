@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>今日拉了吗 · 原型</title>
-<meta name="apple-mobile-web-app-title" content="拉了么">
+<title>今日拉了�?/title>
+<meta name="apple-mobile-web-app-title" content="拉了�?>
 <meta name="theme-color" content="#000000">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ctext x='256' y='380' font-size='280' text-anchor='middle'%3E%F0%9F%92%A9%3C/text%3E%3C/svg%3E">
@@ -38,7 +38,7 @@
   --tabbar-float-gap: 12px;
   --tabbar-radius: 22px;
   --delete-bar-h: 56px;
-  /* 今日 / 回顾 共用：记录行字号与行距 */
+  /* 今日 / 回顾 共用：记录行字号与行�?*/
   --record-pad-x: 16px;
   --record-pad-y: 14px;
   --record-time-size: 1.0625rem;
@@ -205,7 +205,7 @@ body.select-active .app {
 
 .records-section {
   flex-shrink: 0;
-  /* 主按钮与「今天」列表之间：再下移约一行 */
+  /* 主按钮与「今天」列表之间：再下移约一�?*/
   margin-top: clamp(28px, 4.2vh, 44px);
 }
 
@@ -274,7 +274,7 @@ body.select-active .app {
 }
 
 .record-row.select-mode-active.selected .record-check::after {
-  content: "✓";
+  content: "�?;
   font-size: 12px;
   font-weight: 700;
   line-height: 1;
@@ -458,7 +458,7 @@ body.select-active .app {
   padding: 0 var(--record-pad-x) 16px;
 }
 
-/* 回顾详情内列表：与外层灰底合一，避免内层再把底角切成直角 */
+/* 回顾详情内列表：与外层灰底合一，避免内层再把底角切成直�?*/
 .cal-detail .records-card.cal-detail-records {
   margin-top: 10px;
   background: transparent;
@@ -633,7 +633,7 @@ body.select-active .app {
   opacity: 0.88;
 }
 
-/* ----- 删除条 ----- */
+/* ----- 删除�?----- */
 .delete-bar {
   position: fixed;
   left: 50%;
@@ -741,11 +741,218 @@ body.select-active .app {
   from { opacity: 0; transform: translateY(-6px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ----- 多事项：顶部切换 ----- */
+.tracker-header {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+.tracker-switch {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 0.5px solid var(--separator);
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  min-width: 0;
+  transition: transform var(--tap-duration) ease, opacity 0.15s ease;
+}
+.tracker-switch:active {
+  transform: scale(0.98);
+  opacity: 0.92;
+}
+.tracker-switch-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.tracker-switch-name {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tracker-switch-chev {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  color: var(--label-tertiary);
+  opacity: 0.9;
+}
+#trackerPickerBackdrop { z-index: 28; }
+#trackerPickerSheet { z-index: 29; }
+#trackerFormBackdrop { z-index: 30; }
+#trackerFormSheet { z-index: 31; }
+.sheet-panel-tall {
+  max-height: min(72vh, 560px);
+  display: flex;
+  flex-direction: column;
+}
+.tracker-list-wrap {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  margin: 0 -4px;
+  padding: 0 4px 8px;
+}
+.tracker-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 10px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 0.5px solid transparent;
+}
+.tracker-row.is-active {
+  border-color: rgba(52, 199, 89, 0.45);
+  background: rgba(52, 199, 89, 0.08);
+}
+.tracker-row-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  padding: 0;
+}
+.tracker-row-emoji { font-size: 1.35rem; line-height: 1; }
+.tracker-row-name {
+  font-size: 1rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tracker-row-edit {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--label-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.tracker-row-edit:active { opacity: 0.65; }
+.add-tracker-row {
+  width: 100%;
+  padding: 14px;
+  margin-top: 4px;
+  border-radius: 12px;
+  border: 1px dashed var(--separator);
+  background: transparent;
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+.form-field { margin-bottom: 16px; }
+.form-field label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--label-tertiary);
+  margin-bottom: 8px;
+}
+.form-field input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 0.5px solid var(--separator);
+  background: var(--surface-2);
+  color: var(--label);
+  font-size: 1.0625rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.form-field input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(52, 199, 89, 0.35);
+}
+.icon-picker-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--label-tertiary);
+  margin-bottom: 10px;
+}
+.icon-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.icon-pick-btn {
+  aspect-ratio: 1;
+  max-height: 76px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: var(--surface-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.icon-pick-btn svg {
+  width: 100%;
+  height: 100%;
+  max-height: 44px;
+  display: block;
+}
+.icon-pick-btn.selected {
+  border-color: var(--accent);
+  background: rgba(52, 199, 89, 0.12);
+}
+.form-delete-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--danger);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+.form-delete-btn:active { opacity: 0.75; }
+.form-delete-btn[hidden] { display: none !important; }
 </style>
 </head>
 <body>
 
 <div class="app">
+  <header class="tracker-header">
+    <button type="button" class="tracker-switch" id="trackerSwitchBtn" aria-haspopup="dialog" aria-expanded="false">
+      <span class="tracker-switch-emoji" id="trackerSwitchEmoji">💩</span>
+      <span class="tracker-switch-name" id="trackerSwitchName">拉了�?/span>
+      <span class="tracker-switch-chev" aria-hidden="true">�?/span>
+    </button>
+  </header>
+
   <div class="today-view" id="todayView">
     <div class="today-hero-stack">
       <div class="date-label" id="todayDate"></div>
@@ -758,7 +965,7 @@ body.select-active .app {
           </div>
         </div>
       </div>
-      <button type="button" class="poop-btn" id="poopBtn">拉了！</button>
+      <button type="button" class="poop-btn" id="poopBtn">拉了�?/button>
     </div>
 
     <div class="records-section" id="recordsSection" hidden>
@@ -769,9 +976,9 @@ body.select-active .app {
 
   <div class="calendar-view cal-inner" id="calendarView">
     <div class="cal-toolbar">
-      <button type="button" id="prevMonth" aria-label="上月">‹</button>
+      <button type="button" id="prevMonth" aria-label="上月">�?/button>
       <div class="month-title" id="calMonth"></div>
-      <button type="button" id="nextMonth" aria-label="下月">›</button>
+      <button type="button" id="nextMonth" aria-label="下月">�?/button>
     </div>
     <div class="cal-grid" id="calGrid"></div>
     <div class="cal-detail" id="calDetail">
@@ -806,13 +1013,147 @@ body.select-active .app {
   </div>
 </div>
 
+<div class="sheet-backdrop" id="trackerPickerBackdrop" aria-hidden="true"></div>
+<div class="sheet-panel sheet-panel-tall" id="trackerPickerSheet" role="dialog" aria-modal="true" aria-labelledby="trackerPickerTitle">
+  <div class="sheet-grab" aria-hidden="true"></div>
+  <h2 class="sheet-title" id="trackerPickerTitle">我的事项</h2>
+  <div class="tracker-list-wrap" id="trackerListWrap"></div>
+  <button type="button" class="add-tracker-row" id="addTrackerOpenBtn">�?添加事项</button>
+</div>
+
+<div class="sheet-backdrop" id="trackerFormBackdrop" aria-hidden="true"></div>
+<div class="sheet-panel" id="trackerFormSheet" role="dialog" aria-modal="true" aria-labelledby="trackerFormTitle">
+  <div class="sheet-grab" aria-hidden="true"></div>
+  <h2 class="sheet-title" id="trackerFormTitle">添加事项</h2>
+  <div class="form-field">
+    <label for="trackerNameInput">名称</label>
+    <input type="text" id="trackerNameInput" maxlength="24" placeholder="例如：早睡了�? autocomplete="off">
+  </div>
+  <div class="form-field">
+    <label for="trackerEmojiInput">表情符号（今日大图）</label>
+    <input type="text" id="trackerEmojiInput" maxlength="8" placeholder="例如：�? autocomplete="off">
+  </div>
+  <p class="icon-picker-label">日历上的图标</p>
+  <div class="icon-picker-grid" id="iconPickerGrid" role="listbox" aria-label="日历图标"></div>
+  <div class="sheet-actions" style="margin-top: 20px;">
+    <button type="button" class="sheet-cancel" id="trackerFormCancel">取消</button>
+    <button type="button" class="sheet-confirm" id="trackerFormSave">保存</button>
+  </div>
+  <button type="button" class="form-delete-btn" id="trackerFormDelete" hidden>删除此事�?/button>
+</div>
+
 <script>
 (function () {
   const STORAGE_KEY = 'poop-tracker-data';
-  /** 曾使用「档案」时的数据前缀，仅用于一次性迁回主键 */
+  const DATA_VERSION = 2;
+  const DEFAULT_TRACKER_ID = 'trk-poop';
   const PROFILE_DATA_PREFIX = 'poop-tracker-data:';
   const PROFILE_META_KEY = 'poop-tracker-active-profile';
   const LONG_PRESS_MS = 480;
+
+  /**
+   * 内置日历格图标库（用户从网格里�?iconId�?
+   * poop 使用原有 1024 viewBox；其余为 24×24，fill=currentColor
+   */
+  const ICON_LIBRARY = {
+    poop: { label: '便便', color: '#94554d', kind: 'poop' },
+    moon: {
+      label: '月亮',
+      color: '#90CAF9',
+      path:
+        '<path fill="currentColor" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>',
+    },
+    sun: {
+      label: '太阳',
+      color: '#FFD54F',
+      path:
+        '<path fill="currentColor" fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>',
+    },
+    droplet: {
+      label: '水滴',
+      color: '#64B5F6',
+      path:
+        '<path fill="currentColor" d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0L12 2.69z"/>',
+    },
+    heart: {
+      label: '心形',
+      color: '#E57373',
+      path:
+        '<path fill="currentColor" d="M12 21a1 1 0 01-.71-.29l-7.77-7.78a5.5 5.5 0 017.78-7.78 5.5 5.5 0 017.78 7.78l-7.77 7.78a1 1 0 01-.71.29z"/>',
+    },
+    star: {
+      label: '星星',
+      color: '#FFD54F',
+      path:
+        '<path fill="currentColor" d="M12 2l2.9 6.26L22 9.8l-5 4.86L18.18 22 12 18.77 5.82 22 7 14.66 2 9.8l7.1-1.54L12 2z"/>',
+    },
+    leaf: {
+      label: '叶子',
+      color: '#81C784',
+      path:
+        '<path fill="currentColor" d="M17 8C8 10 6 16 6 21h2c0-4 2-9 9-11 1-.3 2-.7 3-1.2C14 5 11 4 8 4c0 3 2 6 5 8 2-2 4-4 4-4z"/>',
+    },
+    flame: {
+      label: '火焰',
+      color: '#FF7043',
+      path:
+        '<path fill="currentColor" d="M12 2c1 3 4 5 4 9 0 3-2 6-4 7-2-1-4-4-4-7 0-4 3-6 4-9zm0 18c-3-2-5-5-5-9 0-2 .5-4 1.5-5.5C8 8 9 11 12 13c3-2 4-5 3.5-7.5C16.5 7 17 9 17 11c0 4-2 7-5 9z"/>',
+    },
+    bolt: {
+      label: '闪电',
+      color: '#FFEE58',
+      path:
+        '<path fill="currentColor" d="M11 21h4l2-10h5L13 3v8H9l2 10z"/>',
+    },
+    bed: {
+      label: '睡眠',
+      color: '#B39DDB',
+      path:
+        '<path fill="currentColor" d="M20 10V7a2 2 0 00-2-2H6a2 2 0 00-2 2v3H3v10h2v-2h14v2h2V10h-1zm-9-1H7V7h4v2zm6 0h-4V7h4v2z"/>',
+    },
+    cup: {
+      label: '杯子',
+      color: '#BCAAA4',
+      path:
+        '<path fill="currentColor" d="M6 3v8c0 2.97 2.16 5.43 5 5.91V21h2v-4.09c2.84-.48 5-2.94 5-5.91V3H6zm10 8c0 2.21-1.79 4-4 4s-4-1.79-4-4V5h8v6z"/>',
+    },
+    pill: {
+      label: '胶囊',
+      color: '#4DD0E1',
+      path:
+        '<path fill="currentColor" d="M4.22 15.78l7-7a4 4 0 015.66 5.66l-7 7a4 4 0 01-5.66-5.66zm2.83 2.83a2 2 0 002.83 0l7-7a2 2 0 00-2.83-2.83l-7 7a2 2 0 000 2.83z"/>',
+    },
+    bike: {
+      label: '运动',
+      color: '#4FC3F7',
+      path:
+        '<path fill="currentColor" d="M15.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM5 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5S3.1 13.5 5 13.5 8.5 15.1 8.5 17 6.9 20.5 5 20.5zm14.5-8.5c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5zM13 7h4l2 4h-4z"/>',
+    },
+  };
+
+  const POOP_SVG_INNER =
+    '<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g transform="translate(0 -58)"><path fill="currentColor" d="M621.568 262.016h77.984c51.104 0 92.544 50.336 92.544 112.448 0 33.376-12 63.36-31.008 83.968h3.008c68.384 0 123.808 54.656 123.808 122.08a120.64 120.64 0 0 1-29.376 78.976C917.152 673.952 960 719.04 960 772.288c0 64.96-63.712 117.76-142.08 117.76H206.08c-78.368 0-142.08-52.8-142.08-117.76 0-51.424 40-95.264 95.584-111.264a120.672 120.672 0 0 1-30.752-80.544c0-67.424 55.424-122.08 123.808-122.08h3.008c-19.008-20.608-31.008-50.592-31.008-83.968 0-62.08 41.44-112.448 92.544-112.448h116.064c64.096-31.36 112.672-121.184 113.28-122.24a10.976 10.976 0 0 1 7.68-5.664 11.2 11.2 0 0 1 9.28 2.432c47.68 40.352 58.72 79.232 59.52 104.736 0.256 6.944-0.256 13.888-1.44 20.736z"/></g></svg>';
+
+  function calDayIconMarkup(iconId) {
+    const meta = ICON_LIBRARY[iconId] || ICON_LIBRARY.poop;
+    const color = meta.color;
+    if (meta.kind === 'poop' || iconId === 'poop') {
+      return (
+        '<span class="d-poop" style="color:' +
+        color +
+        '" aria-hidden="true">' +
+        POOP_SVG_INNER +
+        '</span>'
+      );
+    }
+    return (
+      '<span class="d-poop" style="color:' +
+      color +
+      '" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">' +
+      meta.path +
+      '</svg></span>'
+    );
+  }
 
   function foldInProfileDataOnce() {
     try {
@@ -836,10 +1177,70 @@ body.select-active .app {
   }
 
   foldInProfileDataOnce();
-  /** 日历格有记录时：SVG 在 viewBox 里偏下，整体略上移对齐格子 */
-  const CAL_DAY_POOP_MARKUP =
-    '<span class="d-poop" aria-hidden="true"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><g transform="translate(0 -58)"><path d="M621.568 262.016h77.984c51.104 0 92.544 50.336 92.544 112.448 0 33.376-12 63.36-31.008 83.968h3.008c68.384 0 123.808 54.656 123.808 122.08a120.64 120.64 0 0 1-29.376 78.976C917.152 673.952 960 719.04 960 772.288c0 64.96-63.712 117.76-142.08 117.76H206.08c-78.368 0-142.08-52.8-142.08-117.76 0-51.424 40-95.264 95.584-111.264a120.672 120.672 0 0 1-30.752-80.544c0-67.424 55.424-122.08 123.808-122.08h3.008c-19.008-20.608-31.008-50.592-31.008-83.968 0-62.08 41.44-112.448 92.544-112.448h116.064c64.096-31.36 112.672-121.184 113.28-122.24a10.976 10.976 0 0 1 7.68-5.664 11.2 11.2 0 0 1 9.28 2.432c47.68 40.352 58.72 79.232 59.52 104.736 0.256 6.944-0.256 13.888-1.44 20.736z"/></g></svg></span>';
-  let currentYear, currentMonth;
+
+  function defaultState() {
+    return {
+      version: DATA_VERSION,
+      trackers: [
+        { id: DEFAULT_TRACKER_ID, name: '拉了�?, emoji: '💩', iconId: 'poop' },
+      ],
+      activeTrackerId: DEFAULT_TRACKER_ID,
+      records: {},
+    };
+  }
+
+  function looksLikeLegacyDayMap(obj) {
+    if (!obj || typeof obj !== 'object') return false;
+    const keys = Object.keys(obj);
+    if (keys.length === 0) return false;
+    return keys.some(function (k) {
+      return /^\d{4}-\d{2}-\d{2}$/.test(k);
+    });
+  }
+
+  function migratePayload(parsed) {
+    if (parsed && parsed.version === DATA_VERSION && Array.isArray(parsed.trackers)) {
+      return parsed;
+    }
+    const st = defaultState();
+    if (parsed && typeof parsed === 'object' && looksLikeLegacyDayMap(parsed)) {
+      st.records[DEFAULT_TRACKER_ID] = parsed;
+    }
+    return st;
+  }
+
+  function loadAppState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      return migratePayload(JSON.parse(raw));
+    } catch (e) {
+      return defaultState();
+    }
+  }
+
+  function saveAppState(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function getActiveTracker(state) {
+    const t = state.trackers.find(function (x) {
+      return x.id === state.activeTrackerId;
+    });
+    return t || state.trackers[0];
+  }
+
+  function getTrackerRecords(state, trackerId) {
+    if (!state.records[trackerId]) state.records[trackerId] = {};
+    return state.records[trackerId];
+  }
+
+  function genTrackerId() {
+    return 'trk-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  }
+
+  let currentYear;
+  let currentMonth;
   let selectedCalendarDate = null;
 
   let recordSelectMode = false;
@@ -849,17 +1250,9 @@ body.select-active .app {
   let suppressRowClicksUntil = 0;
   let pointerDownEl = null;
 
-  function loadData() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    } catch {
-      return {};
-    }
-  }
+  let formEditId = null;
+  let formSelectedIconId = 'moon';
 
-  function saveData(data) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }
   function todayStr() {
     const d = new Date();
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -872,16 +1265,57 @@ body.select-active .app {
   function formatTodayLabel() {
     const d = new Date();
     const w = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][d.getDay()];
-    return `${w} · ${d.getMonth() + 1}月${d.getDate()}日`;
+    return `${w} · ${d.getMonth() + 1}�?{d.getDate()}日`;
   }
 
   function isPastDate(ds) {
     return ds < todayStr();
   }
 
+  function isDefaultPoopTracker(t) {
+    return t && t.id === DEFAULT_TRACKER_ID;
+  }
+
+  /** 今日头部：便便保留原版文案；其它事项用通用模板 */
+  function todayHeadUI(tracker, count) {
+    if (isDefaultPoopTracker(tracker)) {
+      if (count <= 0) {
+        return { title: '今日拉了�?, face: '🤨', badge: null, btn: '拉了�? };
+      }
+      if (count === 1) {
+        return { title: '拉了', face: '😄', badge: '×1', btn: '又拉�? };
+      }
+      if (count === 2) {
+        return { title: '又拉�?, face: '😳', badge: '×2', btn: '又拉�? };
+      }
+      return { title: '拉累�?, face: '😢', badge: '×' + count, btn: '又拉�? };
+    }
+    const em = tracker.emoji || '📝';
+    if (count <= 0) {
+      return { title: '今日' + tracker.name, face: em, badge: null, btn: '记一�? };
+    }
+    if (count === 1) {
+      return { title: '今天 1 �?, face: em, badge: '×1', btn: '再记一�? };
+    }
+    return { title: '今天 ' + count + ' �?, face: em, badge: '×' + count, btn: '再记一�? };
+  }
+
+  function renderTrackerHeader() {
+    const state = loadAppState();
+    const t = getActiveTracker(state);
+    document.getElementById('trackerSwitchEmoji').textContent = t.emoji || '💩';
+    document.getElementById('trackerSwitchName').textContent = t.name || '事项';
+  }
+
   function openBackfillSheet() {
+    const state = loadAppState();
+    const t = getActiveTracker(state);
     setSelectMode(false);
     document.getElementById('backfillTime').value = '10:00';
+    document.getElementById('backfillSheetTitle').textContent =
+      isDefaultPoopTracker(t) ? '补拉' : '补记';
+    document.getElementById('backfillTimeLabel').textContent =
+      isDefaultPoopTracker(t) ? '💩时间' : '时间';
     document.getElementById('backfillBackdrop').classList.add('is-open');
     document.getElementById('backfillSheet').classList.add('is-open');
     document.getElementById('backfillBackdrop').setAttribute('aria-hidden', 'false');
@@ -893,38 +1327,211 @@ body.select-active .app {
     document.getElementById('backfillBackdrop').setAttribute('aria-hidden', 'true');
   }
 
-  /** 今日头部：文案、主表情、角标、主按钮文案 */
-  function todayHeadUI(count) {
-    if (count <= 0) {
-      return {
-        title: '今日拉了吗',
-        face: '🤨',
-        badge: null,
-        btn: '拉了！',
-      };
+  function closeTrackerPicker() {
+    document.getElementById('trackerPickerBackdrop').classList.remove('is-open');
+    document.getElementById('trackerPickerSheet').classList.remove('is-open');
+    document.getElementById('trackerPickerBackdrop').setAttribute('aria-hidden', 'true');
+    document.getElementById('trackerSwitchBtn').setAttribute('aria-expanded', 'false');
+  }
+
+  function openTrackerPicker() {
+    closeTrackerForm();
+    renderTrackerList();
+    document.getElementById('trackerPickerBackdrop').classList.add('is-open');
+    document.getElementById('trackerPickerSheet').classList.add('is-open');
+    document.getElementById('trackerPickerBackdrop').setAttribute('aria-hidden', 'false');
+    document.getElementById('trackerSwitchBtn').setAttribute('aria-expanded', 'true');
+  }
+
+  function renderTrackerList() {
+    const state = loadAppState();
+    const wrap = document.getElementById('trackerListWrap');
+    wrap.innerHTML = state.trackers
+      .map(function (tr) {
+        const active = tr.id === state.activeTrackerId;
+        return (
+          '<div class="tracker-row' +
+          (active ? ' is-active' : '') +
+          '" data-id="' +
+          tr.id +
+          '">' +
+          '<button type="button" class="tracker-row-main" data-switch="' +
+          tr.id +
+          '">' +
+          '<span class="tracker-row-emoji">' +
+          (tr.emoji || '📝') +
+          '</span>' +
+          '<span class="tracker-row-name">' +
+          escapeHtml(tr.name) +
+          '</span>' +
+          '</button>' +
+          '<button type="button" class="tracker-row-edit" data-edit="' +
+          tr.id +
+          '" aria-label="编辑">�?/button>' +
+          '</div>'
+        );
+      })
+      .join('');
+
+    wrap.querySelectorAll('[data-switch]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const id = btn.getAttribute('data-switch');
+        const st = loadAppState();
+        st.activeTrackerId = id;
+        saveAppState(st);
+        selectedCalendarDate = null;
+        closeTrackerPicker();
+        renderTrackerHeader();
+        renderToday();
+        renderCalendar();
+      });
+    });
+    wrap.querySelectorAll('[data-edit]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-edit');
+        closeTrackerPicker();
+        openTrackerForm(id);
+      });
+    });
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function closeTrackerForm() {
+    document.getElementById('trackerFormBackdrop').classList.remove('is-open');
+    document.getElementById('trackerFormSheet').classList.remove('is-open');
+    document.getElementById('trackerFormBackdrop').setAttribute('aria-hidden', 'true');
+    formEditId = null;
+  }
+
+  function renderIconPicker(selectedId) {
+    const grid = document.getElementById('iconPickerGrid');
+    grid.innerHTML = Object.keys(ICON_LIBRARY)
+      .map(function (id) {
+        const meta = ICON_LIBRARY[id];
+        const sel = id === selectedId ? ' selected' : '';
+        const inner =
+          meta.kind === 'poop' || id === 'poop'
+            ? POOP_SVG_INNER
+            : '<svg viewBox="0 0 24 24">' + meta.path + '</svg>';
+        return (
+          '<button type="button" class="icon-pick-btn' +
+          sel +
+          '" data-icon="' +
+          id +
+          '" style="color:' +
+          meta.color +
+          '" aria-label="' +
+          escapeHtml(meta.label) +
+          '" title="' +
+          escapeHtml(meta.label) +
+          '">' +
+          inner +
+          '</button>'
+        );
+      })
+      .join('');
+
+    grid.querySelectorAll('.icon-pick-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        formSelectedIconId = b.getAttribute('data-icon');
+        grid.querySelectorAll('.icon-pick-btn').forEach(function (x) {
+          x.classList.toggle('selected', x === b);
+        });
+      });
+    });
+  }
+
+  function openTrackerForm(editId) {
+    closeTrackerPicker();
+    closeBackfillSheet();
+    formEditId = editId || null;
+    const state = loadAppState();
+    const delBtn = document.getElementById('trackerFormDelete');
+    if (formEditId) {
+      const tr = state.trackers.find(function (x) {
+        return x.id === formEditId;
+      });
+      document.getElementById('trackerFormTitle').textContent = '编辑事项';
+      document.getElementById('trackerNameInput').value = tr ? tr.name : '';
+      document.getElementById('trackerEmojiInput').value = tr ? tr.emoji : '';
+      formSelectedIconId = (tr && tr.iconId) || 'poop';
+      delBtn.hidden = state.trackers.length <= 1;
+    } else {
+      document.getElementById('trackerFormTitle').textContent = '添加事项';
+      document.getElementById('trackerNameInput').value = '';
+      document.getElementById('trackerEmojiInput').value = '';
+      formSelectedIconId = 'moon';
+      delBtn.hidden = true;
     }
-    if (count === 1) {
-      return {
-        title: '拉了',
-        face: '😄',
-        badge: '×1',
-        btn: '又拉了',
-      };
+    renderIconPicker(formSelectedIconId);
+    document.getElementById('trackerFormBackdrop').classList.add('is-open');
+    document.getElementById('trackerFormSheet').classList.add('is-open');
+    document.getElementById('trackerFormBackdrop').setAttribute('aria-hidden', 'false');
+  }
+
+  function saveTrackerForm() {
+    const name = document.getElementById('trackerNameInput').value.trim();
+    let emoji = document.getElementById('trackerEmojiInput').value.trim();
+    if (!name) {
+      alert('请填写事项名�?);
+      return;
     }
-    if (count === 2) {
-      return {
-        title: '又拉了',
-        face: '😳',
-        badge: '×2',
-        btn: '又拉了',
-      };
+    if (!emoji) emoji = '📝';
+    const iconId = formSelectedIconId in ICON_LIBRARY ? formSelectedIconId : 'poop';
+
+    const state = loadAppState();
+    if (formEditId) {
+      const tr = state.trackers.find(function (x) {
+        return x.id === formEditId;
+      });
+      if (tr) {
+        tr.name = name;
+        tr.emoji = emoji;
+        tr.iconId = iconId;
+      }
+    } else {
+      state.trackers.push({
+        id: genTrackerId(),
+        name: name,
+        emoji: emoji,
+        iconId: iconId,
+      });
+      state.activeTrackerId = state.trackers[state.trackers.length - 1].id;
     }
-    return {
-      title: '拉累了',
-      face: '😢',
-      badge: '×' + count,
-      btn: '又拉了',
-    };
+    saveAppState(state);
+    closeTrackerForm();
+    renderTrackerHeader();
+    selectedCalendarDate = null;
+    renderToday();
+    renderCalendar();
+  }
+
+  function deleteTrackerForm() {
+    if (!formEditId) return;
+    const state = loadAppState();
+    if (state.trackers.length <= 1) return;
+    if (!confirm('删除该事项将同时删除其所有记录，确定吗？')) return;
+    state.trackers = state.trackers.filter(function (x) {
+      return x.id !== formEditId;
+    });
+    delete state.records[formEditId];
+    if (state.activeTrackerId === formEditId) {
+      state.activeTrackerId = state.trackers[0].id;
+    }
+    saveAppState(state);
+    closeTrackerForm();
+    renderTrackerHeader();
+    selectedCalendarDate = null;
+    renderToday();
+    renderCalendar();
   }
 
   function setSelectMode(on) {
@@ -1022,8 +1629,8 @@ body.select-active .app {
     });
   }
 
-  function applyTodayHead(count) {
-    const u = todayHeadUI(count);
+  function applyTodayHead(tracker, count) {
+    const u = todayHeadUI(tracker, count);
     document.getElementById('statusLine').textContent = u.title;
     document.getElementById('heroEmoji').textContent = u.face;
     const badge = document.getElementById('heroBadge');
@@ -1038,15 +1645,17 @@ body.select-active .app {
 
   function renderToday() {
     const today = todayStr();
-    const data = loadData();
+    const state = loadAppState();
+    const tracker = getActiveTracker(state);
+    const data = getTrackerRecords(state, tracker.id);
     if (!data[today]) data[today] = { count: 0, times: [] };
     const rec = data[today];
     if (!Array.isArray(rec.times)) rec.times = [];
     rec.count = rec.times.length;
-    saveData(data);
+    saveAppState(state);
 
     document.getElementById('todayDate').textContent = formatTodayLabel();
-    applyTodayHead(rec.count);
+    applyTodayHead(tracker, rec.count);
 
     const section = document.getElementById('recordsSection');
     const card = document.getElementById('recordsCard');
@@ -1078,9 +1687,9 @@ body.select-active .app {
           '<span class="record-time">' +
           t +
           '</span>' +
-          '<span class="record-sub">第 ' +
+          '<span class="record-sub">�?' +
           n +
-          ' 次</span>' +
+          ' �?/span>' +
           '</div></div>'
         );
       })
@@ -1091,11 +1700,13 @@ body.select-active .app {
 
   document.getElementById('poopBtn').addEventListener('click', function () {
     const today = todayStr();
-    const data = loadData();
+    const state = loadAppState();
+    const tracker = getActiveTracker(state);
+    const data = getTrackerRecords(state, tracker.id);
     if (!data[today]) data[today] = { count: 0, times: [] };
     data[today].times.push(timeStr());
     data[today].count = data[today].times.length;
-    saveData(data);
+    saveAppState(state);
     renderToday();
     if (navigator.vibrate) navigator.vibrate(15);
   });
@@ -1107,7 +1718,9 @@ body.select-active .app {
   document.getElementById('deleteConfirm').addEventListener('click', function () {
     if (selectedIndices.size === 0 || !recordSelectTargetDate) return;
     const key = recordSelectTargetDate;
-    const data = loadData();
+    const state = loadAppState();
+    const tracker = getActiveTracker(state);
+    const data = getTrackerRecords(state, tracker.id);
     const rec = data[key];
     if (!rec || !rec.times) return;
     const keep = rec.times.filter(function (_, i) {
@@ -1115,7 +1728,7 @@ body.select-active .app {
     });
     rec.times = keep;
     rec.count = rec.times.length;
-    saveData(data);
+    saveAppState(state);
     setSelectMode(false);
     renderCalendar();
     if (navigator.vibrate) navigator.vibrate(12);
@@ -1123,6 +1736,8 @@ body.select-active .app {
 
   function switchTab(tab) {
     closeBackfillSheet();
+    closeTrackerPicker();
+    closeTrackerForm();
     setSelectMode(false);
     document.getElementById('todayView').style.display = tab === 'today' ? 'block' : 'none';
     document.getElementById('calendarView').style.display = tab === 'cal' ? 'block' : 'none';
@@ -1131,36 +1746,70 @@ body.select-active .app {
     if (tab === 'cal') renderCalendar();
   }
 
-  document.getElementById('navToday').addEventListener('click', function () { switchTab('today'); });
-  document.getElementById('navCal').addEventListener('click', function () { switchTab('cal'); });
+  document.getElementById('navToday').addEventListener('click', function () {
+    switchTab('today');
+  });
+  document.getElementById('navCal').addEventListener('click', function () {
+    switchTab('cal');
+  });
+
+  document.getElementById('trackerSwitchBtn').addEventListener('click', function () {
+    openTrackerPicker();
+  });
+  document.getElementById('trackerPickerBackdrop').addEventListener('click', closeTrackerPicker);
+  document.getElementById('addTrackerOpenBtn').addEventListener('click', function () {
+    closeTrackerPicker();
+    openTrackerForm(null);
+  });
+  document.getElementById('trackerFormBackdrop').addEventListener('click', closeTrackerForm);
+  document.getElementById('trackerFormCancel').addEventListener('click', closeTrackerForm);
+  document.getElementById('trackerFormSave').addEventListener('click', saveTrackerForm);
+  document.getElementById('trackerFormDelete').addEventListener('click', deleteTrackerForm);
 
   function renderCalendar() {
-    const data = loadData();
+    const state = loadAppState();
+    const tracker = getActiveTracker(state);
+    const data = getTrackerRecords(state, tracker.id);
     const now = new Date();
     if (currentYear === undefined) {
       currentYear = now.getFullYear();
       currentMonth = now.getMonth();
     }
-    document.getElementById('calMonth').textContent = currentYear + '年' + (currentMonth + 1) + '月';
+    document.getElementById('calMonth').textContent = currentYear + '�? + (currentMonth + 1) + '�?;
     const grid = document.getElementById('calGrid');
-    const names = ['日', '一', '二', '三', '四', '五', '六'];
-    let html = names.map(function (n) { return '<div class="day-name">' + n + '</div>'; }).join('');
+    const names = ['�?, '一', '�?, '�?, '�?, '�?, '�?];
+    let html = names.map(function (n) {
+      return '<div class="day-name">' + n + '</div>';
+    }).join('');
 
     const firstDay = new Date(currentYear, currentMonth, 1).getDay();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
     const today = todayStr();
+    const markSvg = calDayIconMarkup(tracker.iconId || 'poop');
 
     for (let i = 0; i < firstDay; i++) html += '<div class="day empty"></div>';
     for (let d = 1; d <= daysInMonth; d++) {
-      const ds = currentYear + '-' + String(currentMonth + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+      const ds =
+        currentYear +
+        '-' +
+        String(currentMonth + 1).padStart(2, '0') +
+        '-' +
+        String(d).padStart(2, '0');
       const isToday = ds === today;
       const row = data[ds];
       const hasPoop = row && row.times && row.times.length > 0;
-      const poopEl = hasPoop ? CAL_DAY_POOP_MARKUP : '';
+      const poopEl = hasPoop ? markSvg : '';
       html +=
-        '<div class="day' + (isToday ? ' today' : '') + (hasPoop ? ' has-poop' : '') + '" data-date="' + ds + '">' +
+        '<div class="day' +
+        (isToday ? ' today' : '') +
+        (hasPoop ? ' has-poop' : '') +
+        '" data-date="' +
+        ds +
+        '">' +
         poopEl +
-        '<span class="d-num">' + d + '</span>' +
+        '<span class="d-num">' +
+        d +
+        '</span>' +
         '</div>';
     }
     grid.innerHTML = html;
@@ -1173,11 +1822,7 @@ body.select-active .app {
 
     const detail = document.getElementById('calDetail');
     const [tty, ttm] = today.split('-').map(Number);
-    if (
-      !selectedCalendarDate &&
-      currentYear === tty &&
-      currentMonth === ttm - 1
-    ) {
+    if (!selectedCalendarDate && currentYear === tty && currentMonth === ttm - 1) {
       selectedCalendarDate = today;
     }
 
@@ -1200,12 +1845,32 @@ body.select-active .app {
     const [y, m, d] = ds.split('-').map(Number);
     const dt = new Date(y, m - 1, d);
     const w = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][dt.getDay()];
-    return w + ' · ' + m + '月' + d + '日';
+    return w + ' · ' + m + '�? + d + '�?;
+  }
+
+  function detailEmptyCopy(tracker, ds, today) {
+    if (isDefaultPoopTracker(tracker)) {
+      if (ds > today) return '鲁迅说过：人不能拉未来的💩';
+      if (ds === today) return '今天还没�?;
+      return '这天没拉 😢';
+    }
+    if (ds > today) return '还不能记录这一天哦';
+    if (ds === today) return '今天还没有记�?;
+    return '这天还没有记�?;
+  }
+
+  function detailSummaryLine(tracker, n) {
+    if (isDefaultPoopTracker(tracker)) {
+      return '💩拉了' + n + '�?;
+    }
+    return (tracker.emoji || '📝') + ' �?' + n + ' �?;
   }
 
   function showDayDetail(ds) {
     selectedCalendarDate = ds;
-    const data = loadData();
+    const state = loadAppState();
+    const tracker = getActiveTracker(state);
+    const data = getTrackerRecords(state, tracker.id);
     const rec = data[ds];
     const detail = document.getElementById('calDetail');
     document.getElementById('detailDate').textContent = calDetailLabel(ds);
@@ -1215,17 +1880,9 @@ body.select-active .app {
     const today = todayStr();
 
     if (times.length === 0) {
-      let emptyText;
-      if (ds > today) {
-        emptyText = '鲁迅说过：人不能拉未来的💩';
-      } else if (ds === today) {
-        emptyText = '今天还没拉';
-      } else {
-        emptyText = '这天没拉 😢';
-      }
-      body.innerHTML = '<div class="d-empty">' + emptyText + '</div>';
+      body.innerHTML = '<div class="d-empty">' + detailEmptyCopy(tracker, ds, today) + '</div>';
     } else {
-      let h = '<div class="d-line cal-detail-summary">💩拉了' + times.length + '次</div>';
+      let h = '<div class="d-line cal-detail-summary">' + detailSummaryLine(tracker, times.length) + '</div>';
       h += '<div class="records-card cal-detail-records" id="detailRecordsCard">';
       const rev = times.slice().reverse();
       rev.forEach(function (t, i) {
@@ -1246,9 +1903,9 @@ body.select-active .app {
           '<span class="record-time">' +
           t +
           '</span>' +
-          '<span class="record-sub">第 ' +
+          '<span class="record-sub">�?' +
           n +
-          ' 次</span>' +
+          ' �?/span>' +
           '</div></div>';
       });
       h += '</div>';
@@ -1261,7 +1918,10 @@ body.select-active .app {
     const footer = document.getElementById('detailFooter');
     if (isPastDate(ds)) {
       footer.hidden = false;
-      footer.innerHTML = '<button type="button" class="backfill-btn">补拉</button>';
+      footer.innerHTML =
+        '<button type="button" class="backfill-btn">' +
+        (isDefaultPoopTracker(tracker) ? '补拉' : '补记') +
+        '</button>';
     } else {
       footer.hidden = true;
       footer.innerHTML = '';
@@ -1292,12 +1952,14 @@ body.select-active .app {
     let raw = document.getElementById('backfillTime').value;
     if (!raw) raw = '10:00';
     const t = raw.length >= 5 ? raw.slice(0, 5) : '10:00';
-    const data = loadData();
+    const state = loadAppState();
+    const tracker = getActiveTracker(state);
+    const data = getTrackerRecords(state, tracker.id);
     if (!data[ds]) data[ds] = { count: 0, times: [] };
     if (!Array.isArray(data[ds].times)) data[ds].times = [];
     data[ds].times.push(t);
     data[ds].count = data[ds].times.length;
-    saveData(data);
+    saveAppState(state);
     closeBackfillSheet();
     showDayDetail(ds);
     renderCalendar();
@@ -1305,27 +1967,39 @@ body.select-active .app {
 
   document.getElementById('prevMonth').addEventListener('click', function () {
     closeBackfillSheet();
+    closeTrackerPicker();
+    closeTrackerForm();
     setSelectMode(false);
     currentMonth--;
-    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
     selectedCalendarDate = null;
     renderCalendar();
   });
   document.getElementById('nextMonth').addEventListener('click', function () {
     closeBackfillSheet();
+    closeTrackerPicker();
+    closeTrackerForm();
     setSelectMode(false);
     currentMonth++;
-    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
     selectedCalendarDate = null;
     renderCalendar();
   });
 
+  renderTrackerHeader();
   renderToday();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(function () {});
   }
 })();
+
 </script>
 </body>
 </html>

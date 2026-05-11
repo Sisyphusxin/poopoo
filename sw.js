@@ -1,4 +1,4 @@
-const CACHE_NAME = 'poop-tracker-v7';
+const CACHE_NAME = 'poop-tracker-v8';
 const urlsToCache = ['./', './index.html', './manifest.json'];
 
 self.addEventListener('install', e => {
